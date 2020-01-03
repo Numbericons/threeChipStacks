@@ -17,10 +17,12 @@
 function solve(arr) {
   let maxVal = Math.max(arr[0], arr[1], arr[2]);
   let minVal = Math.min(arr[0], arr[1], arr[2]);
+  if (maxVal === minVal) return minVal;
   let minEl = arr.indexOf(minVal);
+  let maxEl = arr.indexOf(maxVal);
 
-  let count = maxVal - minVal;
-  maxVal -= minVal;
+  let count = minVal;
+  arr[maxEl] -= minVal;
 
   arr.splice(minEl,1);
   count += arr[0] < arr[1] ? arr[0] : arr[1];
@@ -28,4 +30,5 @@ function solve(arr) {
   return count;
 }
 
-solve([4, 1, 1])
+let result = solve([1, 1, 1]);
+console.log(result);
